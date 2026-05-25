@@ -198,3 +198,41 @@ console.log(config.browser);
 // gọi hàm thường
 console.log(config.getTimeOut());
 
+// Tính đa hình của OOP
+class BasePage5{
+    cuonTrang(){
+        console.log("Dùng con lăn chuột để  cuộn trang 500px");
+    }
+}
+class MobilePage2 extends BasePage5 {
+    // ghi đè lên hàm cha (override)
+    // cùng tên hàm nhưng logic bên trong thay đổi
+    cuonTrang(){
+        console.log("Dùng 1 ngón tay để vuốt màn hình");
+    }
+}
+class TabletPage extends BasePage5{
+    cuonTrang(){
+        console.log("Dùng 2 ngón tay để vuốt màn hình");
+    }
+}
+let trangweb = new BasePage5();
+let trangMobile = new MobilePage2();
+trangweb.cuonTrang();
+trangMobile.cuonTrang();
+// Sức mạnh của đa hình sẽ gọi cùng 1 hàm trên nhiều object khác nhau
+let danhSachTrang = [new BasePage5(), new MobilePage2(), new TabletPage()];
+danhSachTrang.forEach((trang) => {
+    trang.cuonTrang();
+})
+//VD: Viết 1 hàm nhận bất kỳ 1 class nào đều hoạt động với class đó
+// ví dụ: tôi có 1 hàm chỉ biết dầu vào nhận 1 tham số tên là trang
+function chayKiemThu(trang){
+    console.log("bắt đầu test");
+    trang.cuonTrang();
+    console.log("kết thức test");
+}
+chayKiemThu (new BasePage5());
+chayKiemThu (new MobilePage2());
+chayKiemThu (new TabletPage());
+
